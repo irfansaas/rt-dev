@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== Accessibility Improvements ===== */
+
+/* Focus visible styles - show focus ring only on keyboard navigation */
+:focus-visible {
+  outline: 2px solid #1E9DB8; /* nerdio-primary-500 */
+  outline-offset: 2px;
+}
+
+/* Remove default focus styles (we use focus-visible instead) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip to content link for keyboard users */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 1rem;
+  background: #1E9DB8;
+  color: white;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --contrast-multiplier: 1.5;
+  }
+
+  .bg-gray-50 {
+    background-color: #f3f4f6;
+  }
+
+  .text-gray-500 {
+    color: #374151;
+  }
+
+  .border-gray-200 {
+    border-color: #6b7280;
+  }
+}
+
+/* ===== Scrollbar Hiding (for horizontal scroll areas) ===== */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Custom Scrollbar Styling ===== */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ===== Animation Classes ===== */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Form Field Focus States ===== */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1E9DB8;
+  box-shadow: 0 0 0 3px rgba(30, 157, 184, 0.15);
+}
+
+/* ===== Button Focus States ===== */
+button:focus-visible {
+  outline: 2px solid #1E9DB8;
+  outline-offset: 2px;
+}
+
+/* ===== Loading States ===== */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  /* Hide non-essential elements */
+  nav,
+  .no-print,
+  button,
+  .test-data-panel {
+    display: none !important;
+  }
+
+  /* Ensure readable colors */
+  * {
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Page breaks */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .avoid-page-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== Selection Styling ===== */
+::selection {
+  background-color: rgba(30, 157, 184, 0.3);
+  color: #042838;
+}
